@@ -1,12 +1,20 @@
 <?php
 session_start();
-
-// Periksa apakah pengguna telah login sebagai admin
-if (!isset($_SESSION['admin'])) {
-  // Jika tidak, arahkan kembali ke halaman login
-  header("Location: ../login.php");
-  exit();
+if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
+    header('location: login.php');
+    exit();
 }
+
+include 'koneksi.php';
+
+// Fetch dynamic data from the database
+$userCount = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT COUNT(*) AS count FROM users"))['count'];
+$postCount = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT COUNT(*) AS count FROM clients"))['count'];
+$productCount = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT COUNT(*) AS count FROM products"))['count'];
+$income = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT SUM(jumlah) AS total FROM transactions"))['total'];
+
+// Handle case where total income is null
+$income = $income !== null ? $income : 0;
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +24,7 @@ if (!isset($_SESSION['admin'])) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard | GoInvest</title>
-    <link rel="stylesheet" href="../css/admin.css" />
+    <link rel="stylesheet" href="css/admin.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 
@@ -25,7 +33,7 @@ if (!isset($_SESSION['admin'])) {
         <ul>
             <li class="profile">
                 <div class="imge">
-                    <img src="../assets/image/profile.png" alt="personal-photo" />
+                    <img src="assets/image/profile.png" alt="personal-photo" />
                 </div>
                 <h2>Admin</h2>
             </li>
@@ -36,19 +44,19 @@ if (!isset($_SESSION['admin'])) {
                 </a>
             </li>
             <li>
-                <a href="client.php">
+                <a href="clients/client.php">
                     <i class="fas fa-user-group"></i>
                     <p>Clients</p>
                 </a>
             </li>
             <li>
-                <a href="produk.php">
+                <a href="product/produk.php">
                     <i class="fas fa-table"></i>
                     <p>Products</p>
                 </a>
             </li>
             <li>
-                <a href="transaksi.php">
+                <a href="transactions/transaksi.php">
                     <i class="fas fa-money-check"></i>
                     <p>Transaksi</p>
                 </a>
@@ -74,28 +82,28 @@ if (!isset($_SESSION['admin'])) {
                 <i class="fas fa-user"></i>
                 <div class="data">
                     <p>User</p>
-                    <span>10</span>
+                    <span><?php echo $userCount; ?></span>
                 </div>
             </div>
             <div class="box">
                 <i class="fas fa-pen"></i>
                 <div class="data">
-                    <p>Posts</p>
-                    <span>1</span>
+                    <p>Clients</p>
+                    <span><?php echo $postCount; ?></span>
                 </div>
             </div>
             <div class="box">
                 <i class="fas fa-table"></i>
                 <div class="data">
                     <p>Products</p>
-                    <span>6</span>
+                    <span><?php echo $productCount; ?></span>
                 </div>
             </div>
             <div class="box">
                 <i class="fas fa-dollar"></i>
                 <div class="data">
                     <p>Pendapatan</p>
-                    <span>100B</span>
+                    <span><?php echo number_format($income, 0, ',', '.'); ?></span>
                 </div>
             </div>
         </div>

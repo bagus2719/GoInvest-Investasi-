@@ -25,21 +25,28 @@
     </nav>
     <div class="wrapper">
         <div class="title">Register</div>
-        <form action="we.php">
+        <form action="register-proses.php" method="post">
             <div class="field">
-                <input type="text" required>
+                <input type="text" name="username" required>
                 <label>Username</label>
             </div>
             <div class="field">
-                <input type="text" required>
+                <input type="text" name="email" required>
                 <label>Email address</label>
             </div>
             <div class="field">
-                <input type="password" required>
+                <input type="password" name="password" required>
                 <label>Password</label>
             </div>
             <div class="field">
-                <input type="submit" value="Register">
+                <select name="role" required>
+                    <option value="" disabled selected>Select Role</option>
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+            <div class="field">
+                <input type="submit" name="register" id="register" value="register">
             </div>
             <div class="signin-link">Sudah punya akun? <a href="login.php">Sign In</a></div>
         </form>

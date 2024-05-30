@@ -1,12 +1,26 @@
 <?php
-session_start();
+include '../koneksi.php';
+$id_client = $_GET['id'];
+if (!isset($_GET['id'])) {
+    echo "
+      <script>
+        alert('Tidak ada ID yang Terdeteksi');
+        window.location = 'client.php';
+      </script>
+    ";
+}
 
-// Periksa apakah pengguna telah login sebagai admin
-if (!isset($_SESSION['admin'])) {
-    // Jika tidak, arahkan kembali ke halaman login
-    header("Location: ../login.php");
+$sql = "SELECT * FROM clients WHERE id_client = '$id_client'";
+$result = mysqli_query($koneksi, $sql);
+$data = mysqli_fetch_assoc($result);
+
+session_start();
+if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
+    header('location: ../login.php');
     exit();
 }
+
+include '../koneksi.php';
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +44,7 @@ if (!isset($_SESSION['admin'])) {
                 <h2>Admin</h2>
             </li>
             <li>
-                <a href="admin.php">
+                <a href="../admin.php">
                     <i class="fas fa-home"></i>
                     <p>Dashboard</p>
                 </a>
@@ -42,13 +56,13 @@ if (!isset($_SESSION['admin'])) {
                 </a>
             </li>
             <li>
-                <a href="produk.php">
+                <a href="../product/produk.php">
                     <i class="fas fa-table"></i>
                     <p>Products</p>
                 </a>
             </li>
             <li>
-                <a href="transaksi.php">
+                <a href="../transactions/transaksi.php">
                     <i class="fas fa-money-check"></i>
                     <p>Transaksi</p>
                 </a>
@@ -61,46 +75,23 @@ if (!isset($_SESSION['admin'])) {
             </li>
         </ul>
     </div>
+
     <div class="content">
         <div class="title-info">
-            <p>Clients</p>
+            <p>Delete Clients</p>
             <i class="fas fa-chart-bar"></i>
         </div>
-        <table class="table-data">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>ID</th>
-                    <th>Nama</th>
-                    <th>Detail</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>C001</td>
-                    <td>Bagus</td>
-                    <td>
-                        <button class="btn_detail">Detail</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>C002</td>
-                    <td>Tri</td>
-                    <td>
-                        <button class="btn_detail">Detail</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
 
-        <button class="btn-hps">
-            Hapus
-        </button>
-        <button class="btn-tmbh">
-            Tambah
-        </button>
+        <form action="proses-client.php" method="post" enctype="multipart/form-data" class="form-delete">
+            <h4>Apakag Anda Yakin Ingin Menghapus Data ?</h4>
+            <input type="hidden" name="id_client" value="<?= $data['id_client'] ?>">
+            <button type="submit" class="btn-hps" name="hapus">
+                Yes
+            </button>
+            <button type="submit" class="btn-hps" name="tidak">
+                No
+            </button>
+        </form>
     </div>
 </body>
 

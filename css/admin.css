@@ -1,3 +1,16 @@
+/* CSS Styles */
+@font-face {
+  font-family: "Montserrat";
+  src: url("../assets/fonts/Montserrat-Regular.ttf") format("truetype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../assets/fonts/Montserrat-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -8,7 +21,7 @@
 body {
   background-color: whitesmoke;
   display: flex;
-
+  font-family: "Montserrat", sans-serif;
 }
 
 .imge {
@@ -36,7 +49,7 @@ body {
 }
 
 .menu {
-  background-color: #191A19;
+  background-color: #191a19;
   height: 100vh;
   width: 60px;
   padding: 20px;
@@ -68,7 +81,7 @@ ul li a {
 }
 
 ul li a:hover,
-.active{
+.active {
   background-color: green;
 }
 
@@ -79,7 +92,7 @@ ul li a:hover,
 }
 
 .log-out a {
-  background-color: #1E5128;
+  background-color: #1e5128;
 }
 
 ul li a i {
@@ -89,18 +102,17 @@ ul li a i {
 .content {
   width: 100%;
   margin: 10px;
-  
   overflow-x: auto;
 }
 
 .home-content h1 {
   display: flex;
   position: relative;
-  color: #191A19;
+  color: #191a19;
 }
 
 .title-info {
-  background-color: #1E5128;
+  background-color: #1e5128;
   padding: 10px;
   display: flex;
   align-items: center;
@@ -119,7 +131,7 @@ ul li a i {
 
 .data-info .box {
   height: 150px;
-  background-color: #191A19;
+  background-color: #191a19;
   flex-basis: 250px;
   flex-grow: 1;
   border-radius: 8px;
@@ -127,7 +139,6 @@ ul li a i {
   align-items: center;
   justify-content: space-around;
 }
-
 
 .data-info .box i {
   font-size: 2.5rem;
@@ -145,80 +156,152 @@ table {
   width: 100%;
   text-align: center;
   border-collapse: collapse;
-  background-color: #dddddd;
+  background-color: #ffffff;
   border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border: 2px solid #ddd;
 }
 
-.table-data {
-  border: 1px solid black;
+th,
+td {
+  padding: 15px 15px;
+  border: 1px solid #ddd;
 }
 
 th {
-  background-color: #1E5128;
-  border: 1px solid black;
-  height: 40px;
+  background-color: #1e5128;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 td {
-  color: black;
-  padding: 5px 20px;
-  border: 1px solid black;
+  color: #333333;
 }
 
-.jual {
-  background-color: green;
+.btn-edit {
+  background-color: #4e9f3d;
   color: white;
-  border-radius: 5px;
-  padding: 5px 15px;
-}
-
-.beli {
-  background-color: red;
-  border-radius: 5px;
-  padding: 5px 15px;
-}
-
-.btn_detail {
-  background-color: #4E9F3D;
-  color: white;
-  padding: 8px 20px;
+  padding: 7px 25px;
   border-radius: 5px;
   border: none;
   cursor: pointer;
+  text-decoration: none;
 }
 
-.btn_detail:hover {
-  background-color: #1E5128;
-}
-
-.btn-tmbh {
-  float: right;
-  background-color: #4E9F3D;
-  color: white;
-  padding: 8px 20px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  margin: 15px 0px 10px 10px;
-}
-
-.btn-tmbh:hover{
-  background-color: #1E5128;
+.btn-edit:hover {
+  background-color: #1e5128;
 }
 
 .btn-hps {
-  float: right;
   background-color: #ff0000;
   color: white;
-  padding: 8px 20px;
+  padding: 7px 16px;
   border-radius: 5px;
   border: none;
   cursor: pointer;
-  margin: 15px 0px 10px 10px;
+  text-decoration: none;
 }
 
-.btn-hps:hover{
+.btn-hps:hover {
   background-color: #960909;
+}
+
+.btn-tmbh {
+  background-color: #4e9f3d;
+  font-size: 0.9rem;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  margin: 12px 0 12px 0;
+}
+
+.btn-tmbh:hover {
+  background-color: #1e5128;
+}
+
+.form-tambah {
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.form-tambah label {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: black;
+}
+
+.form-tambah input[type="text"],
+.form-tambah input[type="date"],
+.form-tambah textarea {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid black;
+  color: black;
+}
+
+.form-tambah select {
+  width: 100%;
+  margin-top: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid black;
+  color: black;
+}
+
+.form-tambah select option {
+  /* Style option elements */
+  color: black; /* Text color black */
+}
+
+.form-tambah input[type="submit"] {
+  background-color: #4e9f3d;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.form-tambah input[type="submit"]:hover {
+  background-color: #1e5128;
+}
+
+.form-delete {
+  width: calc(100% -20px);
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.form-delete h4 {
+  margin-bottom: 20px;
+  color: black;
+}
+
+.form-delete button {
+  width: 100px;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-delete button:hover {
+  background-color: #1e5128;
+  /* Change color on hover */
 }
 
 @media screen and (max-width: 991.98px) {

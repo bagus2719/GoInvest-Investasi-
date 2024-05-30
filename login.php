@@ -1,24 +1,3 @@
-<?php
-session_start();
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    if ($email == 'admin@gmail.com' && $password == 'admin234') {
-        $_SESSION['admin'] = $email;
-        header("Location: admin/admin.php");
-        exit();
-    } elseif ($email == 'bagus@gmail.com' && $password == 'bagus234') {
-        $_SESSION['user'] = $email;
-        header("Location: page-user.php");
-        exit();
-    } else {
-        $error = "Email atau password anda salah";
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html>
 
@@ -27,11 +6,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | GoInvest</title>
     <link rel="stylesheet" href="css/login.css">
-    <script>
-    function showError(message) {
-        alert(message);
-    }
-    </script>
 </head>
 
 <body>
@@ -51,10 +25,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </nav>
     <div class="wrapper">
         <div class="title">Login</div>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <form action="login-proses.php" method="post">
             <div class="field">
-                <input type="text" name="email" required>
-                <label>Email address</label>
+                <input type="text" name="username" required>
+                <label>Username</label>
             </div>
             <div class="field">
                 <input type="password" name="password" required>
@@ -67,16 +41,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="pass-link"><a href="#">forgot password?</a></div>
             </div>
             <div class="field">
-                <input type="submit" value="Login">
+                <input type="submit" name="login" value="Login">
             </div>
             <div class="signup-link">Not a member yet? <a href="register.php">Signup now</a></div>
         </form>
     </div>
-    <?php if (isset($error)) { ?>
-    <script>
-    showError("<?php echo $error; ?>");
-    </script>
-    <?php } ?>
 </body>
 
 </html>

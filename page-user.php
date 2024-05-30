@@ -1,11 +1,11 @@
 <?php
 session_start();
-// Periksa apakah pengguna sudah login
-if (!isset($_SESSION['user'])) {
-    header("Location: login.php");
+if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'user') {
+    header('location: login.php');
     exit();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

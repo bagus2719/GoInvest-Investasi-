@@ -244,6 +244,30 @@ a.btn-signin:hover {
   text-decoration: none;
 }
 
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  border: 1px solid lightgrey;
+  border-radius: 15px;
+  padding: 10px;
+  width: 100%;
+  font-family: "Monserrat", sans-serif;
+  font-size: 17px;
+  color: #999999;
+}
+
+select:focus {
+  border-color: #1e5128;
+}
+
+select option {
+  padding: 10px;
+  font-family: "Monserrat", sans-serif;
+  color: #191a19;
+}
+
 @media screen and (max-width: 991.98px) {
   .navbar {
     width: 90%;

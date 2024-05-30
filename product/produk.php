@@ -1,12 +1,11 @@
 <?php
 session_start();
-
-// Periksa apakah pengguna telah login sebagai admin
-if (!isset($_SESSION['admin'])) {
-    // Jika tidak, arahkan kembali ke halaman login
-    header("Location: ../login.php");
+if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
+    header('location: ../login.php');
     exit();
 }
+
+include '../koneksi.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,13 +28,13 @@ if (!isset($_SESSION['admin'])) {
                 <h2>Admin</h2>
             </li>
             <li>
-                <a href="admin.php">
+                <a href="../admin.php">
                     <i class="fas fa-home"></i>
                     <p>Dashboard</p>
                 </a>
             </li>
             <li>
-                <a href="client.php">
+                <a href="../clients/client.php">
                     <i class="fas fa-user-group"></i>
                     <p>Clients</p>
                 </a>
@@ -47,7 +46,7 @@ if (!isset($_SESSION['admin'])) {
                 </a>
             </li>
             <li>
-                <a href="transaksi.php">
+                <a href="../transactions/transaksi.php">
                     <i class="fas fa-money-check"></i>
                     <p>Transaksi</p>
                 </a>
