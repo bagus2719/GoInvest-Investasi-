@@ -45,7 +45,7 @@ $result_users = mysqli_query($koneksi, $sql_users);
                 </a>
             </li>
             <li>
-                <a href="../product/produk.php">
+                <a href="../product/product.php">
                     <i class="fas fa-table"></i>
                     <p>Products</p>
                 </a>
@@ -75,7 +75,7 @@ $result_users = mysqli_query($koneksi, $sql_users);
             <select id="id_user" name="id_user" required>
                 <option value="" disabled selected>PILIH ID USER</option>
                 <?php while ($row_users = mysqli_fetch_assoc($result_users)) { ?>
-                    <option value="<?php echo $row_users['id_user']; ?>"><?php echo $row_users['id_user']; ?></option>
+                <option value="<?php echo $row_users['id_user']; ?>"><?php echo $row_users['id_user']; ?></option>
                 <?php } ?>
             </select>
 

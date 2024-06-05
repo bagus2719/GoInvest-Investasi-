@@ -6,6 +6,10 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
 }
 
 include '../koneksi.php';
+
+// Query SQL untuk mengambil data dari tabel clients
+$sql = "SELECT * FROM products";
+$result = mysqli_query($koneksi, $sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +44,7 @@ include '../koneksi.php';
                 </a>
             </li>
             <li>
-                <a href="produk.php" class="active">
+                <a href="product.php" class="active">
                     <i class="fas fa-table"></i>
                     <p>Products</p>
                 </a>
@@ -61,76 +65,49 @@ include '../koneksi.php';
     </div>
     <div class="content">
         <div class="title-info">
-            <p>Products</p>
+            <p>Data Prducts</p>
             <i class="fas fa-chart-bar"></i>
         </div>
+        <a href="entry-product.php"><button class="btn-tmbh">
+                TAMBAH DATA
+            </button></a>
+        <a href="cetak-data-product.php"><button class="btn-cetak">
+                CETAK DATA
+            </button></a>
         <table class="table-data">
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Kode</th>
-                    <th>Nama</th>
-                    <th>Deatail</th>
+                    <th>Kode Produk</th>
+                    <th>Nama Produk</th>
+                    <th>Harga</th>
+                    <th>Penerbit</th>
+                    <th>Status</th>
+                    <th>Deskripsi</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>TLKM</td>
-                    <td>PT. Telkom Indonesia</td>
-                    <td>
-                        <button class="btn_detail">Detail</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>BBCA</td>
-                    <td>PT. Bank Sentral Asia Tbk</td>
-                    <td>
-                        <button class="btn_detail">Detail</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>BBRI</td>
-                    <td>PT. Bank Rakyat Indonesia TBK</td>
-                    <td>
-                        <button class="btn_detail">Detail</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>ASII</td>
-                    <td>PT. Astra International TBK</td>
-                    <td>
-                        <button class="btn_detail">Detail</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>UNVR</td>
-                    <td>PT. Unilever Indonesia Tbk</td>
-                    <td>
-                        <button class="btn_detail">Detail</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>HMSP</td>
-                    <td>PT. HM Sampoerna Tbk</td>
-                    <td>
-                        <button class="btn_detail">Detail</button>
-                    </td>
-                </tr>
+                <?php
+                $no = 1;
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<tr>";
+                    echo "<td>" . $no++ . "</td>";
+                    echo "<td>" . $row['kode_produk'] . "</td>";
+                    echo "<td>" . $row['nama_produk'] . "</td>";
+                    echo "<td>" . $row['harga'] . "</td>";
+                    echo "<td>" . $row['nama_penerbit'] . "</td>";
+                    echo "<td>" . $row['status'] . "</td>";
+                    echo "<td>" . $row['deskripsi'] . "</td>";
+                    echo "<td>";
+                    echo "<a href='edit-product.php?id=" . $row['id_product'] . "' class='btn-edit'>Edit</a> ";
+                    echo "<a href='delete-product.php?id=" . $row['id_product'] . "' class='btn-hps'>Delete</a>";
+                    echo "</td>";
+                    echo "</tr>";
+                }
+                ?>
             </tbody>
         </table>
-
-        <button class="btn-hps">
-            Hapus
-        </button>
-        <button class="btn-tmbh">
-            Tambah
-        </button>
     </div>
 </body>
 

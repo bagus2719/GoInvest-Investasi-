@@ -50,7 +50,7 @@ $income = $income !== null ? $income : 0;
                 </a>
             </li>
             <li>
-                <a href="product/produk.php">
+                <a href="product/product.php">
                     <i class="fas fa-table"></i>
                     <p>Products</p>
                 </a>

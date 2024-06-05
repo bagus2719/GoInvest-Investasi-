@@ -39,7 +39,7 @@
                 <label>Password</label>
             </div>
             <div class="field">
-                <select name="role" required>
+                <select id="role" name=" role" required>
                     <option value="" disabled selected>Select Role</option>
                     <option value="user">User</option>
                     <option value="admin">Admin</option>
@@ -52,5 +52,10 @@
         </form>
     </div>
 </body>
+<script>
+document.getElementById('role').addEventListener('change', function() {
+    this.style.color = '#000';
+});
+</script>
 
 </html>

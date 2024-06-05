@@ -45,7 +45,7 @@ $result = mysqli_query($koneksi, $sql);
                 </a>
             </li>
             <li>
-                <a href="../product/produk.php">
+                <a href="../product/product.php">
                     <i class="fas fa-table"></i>
                     <p>Products</p>
                 </a>
@@ -66,7 +66,7 @@ $result = mysqli_query($koneksi, $sql);
     </div>
     <div class="content">
         <div class="title-info">
-            <p>Clients</p>
+            <p>Data Clients</p>
             <i class="fas fa-chart-bar"></i>
         </div>
         <a href="entry-client.php"><button class="btn-tmbh">

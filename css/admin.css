@@ -1,4 +1,3 @@
-/* CSS Styles */
 @font-face {
   font-family: "Montserrat";
   src: url("../assets/fonts/Montserrat-Regular.ttf") format("truetype");
@@ -19,8 +18,9 @@
 }
 
 body {
-  background-color: whitesmoke;
   display: flex;
+  background-color: whitesmoke;
+  overflow-x: hidden;
   font-family: "Montserrat", sans-serif;
 }
 
@@ -54,7 +54,7 @@ body {
   width: 60px;
   padding: 20px;
   overflow: hidden;
-  transition: 0.3s;
+  transition: width 0.3s;
 }
 
 .menu:hover {
@@ -165,7 +165,7 @@ table {
 
 th,
 td {
-  padding: 15px 15px;
+  padding: 15px;
   border: 1px solid #ddd;
 }
 
@@ -178,16 +178,23 @@ th {
 
 td {
   color: #333333;
+  word-break: break-word; /* Ensures long text breaks into new lines */
 }
 
-.btn-edit {
-  background-color: #4e9f3d;
-  color: white;
+.btn-edit,
+.btn-hps {
   padding: 7px 25px;
   border-radius: 5px;
   border: none;
   cursor: pointer;
   text-decoration: none;
+  display: inline-block;
+  margin: 5px; /* Adds spacing between buttons */
+}
+
+.btn-edit {
+  background-color: #4e9f3d;
+  color: white;
 }
 
 .btn-edit:hover {
@@ -197,11 +204,6 @@ td {
 .btn-hps {
   background-color: #ff0000;
   color: white;
-  padding: 7px 16px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
 }
 
 .btn-hps:hover {
@@ -216,11 +218,26 @@ td {
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  margin: 12px 0 12px 0;
+  margin: 12px 0;
 }
 
 .btn-tmbh:hover {
   background-color: #1e5128;
+}
+
+.btn-cetak {
+  background-color: #be0000;
+  font-size: 0.9rem;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  margin: 12px 0;
+}
+
+.btn-cetak:hover {
+  background-color: #8b0000;
 }
 
 .form-tambah {
@@ -236,6 +253,7 @@ td {
 
 .form-tambah input[type="text"],
 .form-tambah input[type="date"],
+.form-tambah input[type="number"],
 .form-tambah textarea {
   width: calc(100% - 20px);
   padding: 10px;
@@ -257,8 +275,7 @@ td {
 }
 
 .form-tambah select option {
-  /* Style option elements */
-  color: black; /* Text color black */
+  color: black;
 }
 
 .form-tambah input[type="submit"] {
@@ -276,7 +293,7 @@ td {
 }
 
 .form-delete {
-  width: calc(100% -20px);
+  width: calc(100% - 20px);
   background-color: #ffffff;
   padding: 20px;
   border-radius: 10px;
@@ -301,7 +318,6 @@ td {
 
 .form-delete button:hover {
   background-color: #1e5128;
-  /* Change color on hover */
 }
 
 @media screen and (max-width: 991.98px) {
@@ -315,18 +331,18 @@ td {
     text-align: center;
   }
 
-  nav .menu {
+  .menu {
     width: 100%;
     margin: 0;
   }
 
-  nav .menu ul {
+  .menu ul {
     text-align: center;
     margin: auto;
     line-height: 60px;
   }
 
-  nav .menu ul li {
+  .menu ul li {
     display: inline-block;
     float: none;
   }
@@ -339,5 +355,24 @@ td {
     display: block;
     width: 100%;
     height: auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  th,
+  td {
+    white-space: nowrap; /* Prevents table cells from wrapping */
+  }
+
+  .btn-edit,
+  .btn-hps {
+    padding: 5px 10px;
+    font-size: 0.8rem; /* Adjust button size for smaller screens */
   }
 }
